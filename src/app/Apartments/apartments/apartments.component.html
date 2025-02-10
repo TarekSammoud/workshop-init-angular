@@ -1,0 +1,25 @@
+
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-4 col-sm-6 d-flex justify-content-center mb-4" *ngFor="let apart of apartments">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body text-center">
+            <h5 class="card-title">Res ID : {{apart.ResidenceId}}</h5>
+            <h5 class="card-title">Category : {{apart.category}}</h5>
+            <p class="card-text">Apart Num : {{apart.apartNum}}</p>
+            <p class="card-text">Floor Num :{{apart.floorNum}}</p>
+            <p class="card-text">Surface Num : {{apart.surface}}</p>
+            <p class="card-text">Terrase : {{apart.terrace}}</p>
+            <p class="card-text">Surface Terrasse :{{apart.surfaceterrace}}</p>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+    <a (click)="addApartment()" class="btn btn-primary">Add Apartment</a>
+
+  

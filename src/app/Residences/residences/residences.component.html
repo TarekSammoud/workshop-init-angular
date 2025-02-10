@@ -1,0 +1,24 @@
+<input class="form-control mr-sm-2" type="search" placeholder="filter par adresse" #filter aria-label="Search" (input)="filterResults(filter.value)">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-sm-6 d-flex justify-content-center mb-4" *ngFor="let res of listResidencesFiltered">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body text-center">
+          <img src="{{res.image}}" alt="error" class="rounded float-left img-fluid">
+          <h5 class="card-title">{{res.name}}</h5>
+          <p *ngIf="res.locationShown" class="card-text">{{res.address}}</p>
+          <div [ngSwitch]="res.status">
+            <p *ngSwitchCase="'Disponible'" class="card-text text-success">{{res.status}}</p>
+            <p *ngSwitchCase="'Vendu'" class="card-text text-warning">{{res.status}}</p>
+            <p *ngSwitchDefault class="card-text text-danger">{{res.status}}</p>
+          </div>
+          <a (click)="OnSelect(res)" class="btn btn-primary">Details</a>
+          <a (click)="ListApartments(res)" class="btn btn-primary">Apartments</a>
+          <button (click)="ShowLocation(res.id)" class="btn btn-secondary">Show Location</button>
+          <button (click)="LikeRes(res.id)" class="btn btn-secondary">Like</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

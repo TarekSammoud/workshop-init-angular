@@ -1,0 +1,22 @@
+<h3>Residence {{resID +1}}</h3>
+
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4 col-sm-6 d-flex justify-content-center mb-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body text-center">
+          <img src="{{SelectedRes.image}}" alt="error" class="rounded float-left img-fluid">
+          <h5 class="card-title">{{SelectedRes.name}}</h5>
+          <p *ngIf="SelectedRes.locationShown" class="card-text">{{SelectedRes.address}}</p>
+          <div >
+            <p  class="card-text text-success">{{SelectedRes.status}}</p>
+          </div>
+          <a (click)="nextRes()" class="btn btn-primary">Next</a>
+          <a (click)="addRes()" class="btn btn-primary">Add Residence</a>
+          <a (click)="updateRes(SelectedRes.id)" class="btn btn-primary">Update Residence</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

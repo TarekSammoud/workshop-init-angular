@@ -1,0 +1,37 @@
+
+<form class="form-inline" (ngSubmit)="onFormSubmit()" #f="ngForm">
+    <div class="row">
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Apart Num" ngModel name="apartNum" required>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Floor Num" ngModel name="floorNum"  required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Surface" ngModel  name="surface"  required>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Surface Terrace" ngModel  name="surfaceterrace" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input type="text" class="form-control" placeholder="Category" ngModel  name="category" required>
+      </div>
+      <div class="col">
+        <input type="number" class="form-control" placeholder="Residence ID" ngModel  name="ResidenceId" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>
+          <input type="checkbox" ngModel name="terrace"> Terrace
+        </label>
+      </div>
+    </div>
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  
