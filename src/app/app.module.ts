@@ -14,7 +14,8 @@ import { ApartmentsByResidenceComponent } from './Apartments/apartments-by-resid
 import { AddApartmentComponent } from './Apartments/add-apartment/add-apartment.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResidenceDetailsComponent } from './residence-details/residence-details.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -25,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     FooterComponent,
     NotFoundComponent,
-    ResidencesComponent,
+    // ResidencesComponent,
     AddResidenceComponent,
     ApartmentsComponent,
     ApartmentsByResidenceComponent,
@@ -36,7 +37,9 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ResidencesComponent,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,4 @@
+import { CommonModule, NgClass, NgIf, NgSwitch } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Residence } from 'src/app/core/models/residence';
@@ -5,7 +6,12 @@ import { ResidenceService } from 'src/app/residence.service';
 @Component({
   selector: 'app-residences',
   templateUrl: './residences.component.html',
-  styleUrls: ['./residences.component.css']
+  styleUrls: ['./residences.component.css'],
+  imports: [
+    CommonModule
+  ],
+  providers:[ResidenceService],
+  standalone: true,
 })
 
 
@@ -21,6 +27,7 @@ export class ResidencesComponent implements OnInit {
   ngOnInit(): void {
     this.residenceService.getResidences().subscribe(residences => this.listResidences = residences);
     this.listResidencesFiltered = this.listResidences;
+    console.log(this.listResidences);
   }
 
 

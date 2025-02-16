@@ -1,34 +1,58 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
 import { Apartment } from 'src/app/core/models/apartment';
 import { ApartmentsService } from 'src/app/services/apartments.service';
-
+import { ResidenceService } from 'src/app/residence.service';
+import { FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-apartment',
   templateUrl: './add-apartment.component.html',
   styleUrls: ['./add-apartment.component.css']
 })
-export class AddApartmentComponent {
+export class AddApartmentComponent implements OnInit {
 
-  constructor (private apartmentsService : ApartmentsService) {}
+  constructor (private apartmentsService : ApartmentsService, private residenceService : ResidenceService) {}
+  resListe = this.residenceService.getResidences();
+
+  appartement_data! : FormGroup;
 
 
-      @ViewChild('f') myForm: NgForm | undefined; 
-      apart! : Apartment ; 
+
+
+  apart: Apartment = new Apartment(); 
+
+
+      ngOnInit(): void {
+        this.appartement_data = new FormGroup({
+          'surface': new FormControl (null, [ Validators.required ]),
+          'terrace': new FormControl (false, [ Validators.required ]),
+          'surfaceterrace': new FormControl ({value: 0, disabled: true}, [ Validators.required ]),
+          'category': new FormControl ('S+1', [ Validators.required ]),
+         // 'ResidenceId': new FormGroup({}),
+          'apartNum': new FormControl (null, [ Validators.required ]),
+          'floorNum': new FormControl (null, [ Validators.required ])
+        });
+
+        this.appartement_data.get('terrace')?.valueChanges.subscribe(value => {
+          if (value) {
+            this.appartement_data.get('surfaceterrace')?.enable();
+          } else {
+            this.appartement_data.get('surfaceterrace')?.disable();
+            this.appartement_data.get('surfaceterrace')?.reset();
+          }
+        });
+      }
   
-      onFormSubmit(){
-        this.apart = new Apartment(); 
-        
-  
-        console.log(this.myForm);
-          this.apart.surface = this.myForm?.value['surface'];
-          this.apart.terrace = this.myForm?.value['terrace'];
-          this.apart.surfaceterrace = this.myForm?.value['surfaceterrace'];
-          this.apart.category = this.myForm?.value['category'];
-          this.apart.ResidenceId = this.myForm?.value['ResidenceId'] -1;
-          this.apart.apartNum = this.myForm?.value['apartNum'];
-          this.apart.floorNum = this.myForm?.value['floorNum'];
-          console.log(this.apart);
-          this.apartmentsService.addApartment(this.apart);
+      onFormSubmit() {
+        if (this.appartement_data.valid) {
+          console.log("Submitting form:", this.appartement_data.value);
+    
+          this.apartmentsService.addApartment(this.appartement_data.value)
+        } else {
+          console.error("Form is invalid:", this.appartement_data.errors);
+          console.error("Form data:", this.appartement_data.value);
+
+        }
       }
 }

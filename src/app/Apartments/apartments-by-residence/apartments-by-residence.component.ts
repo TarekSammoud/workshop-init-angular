@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Apartment } from 'src/app/core/models/apartment';
 import { Residence } from 'src/app/core/models/residence';
@@ -12,6 +13,8 @@ import { ApartmentsService } from 'src/app/services/apartments.service';
 export class ApartmentsByResidenceComponent implements OnInit{
   
   constructor(private apartmentService: ApartmentsService, private route: ActivatedRoute) { }
+
+
 
 
   apartments! : Apartment[];

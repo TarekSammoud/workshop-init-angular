@@ -1,37 +1,102 @@
 
-<form class="form-inline" (ngSubmit)="onFormSubmit()" #f="ngForm">
-    <div class="row">
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Apart Num" ngModel name="apartNum" required>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4 shadow-lg" style="width: 70vw;">
+    <div class="card-body">
+      <h4 class="card-title text-center mb-4">Ajouter un Apartment</h4>
+<form class="" [formGroup]="appartement_data" (ngSubmit)="onFormSubmit()">
+  <div class="row mb-3">
+    <label for="apartNum" class="col-sm-2 col-col-sm-2 col-form-label">Apartment Number:</label>
+    <div class="col-sm-10">
+      <input type="text"  formControlName="apartNum" class="form-control" id="apartNum" placeholder="">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="floorNum" class="col-sm-2 col-form-label">Floor Number:</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="floorNum" formControlName="floorNum" >
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="surface" class="col-sm-2 col-form-label">Surface</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="surface" placeholder=""  formControlName="surface">
+  </div>
+  </div>
+  <div class="row mb-3">
+
+    <fieldset class="row mb-3">
+      <legend class="col-sm-2 col-form-label pt-0">Terrace</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="terrace" [value]="true" id="terraceYes">
+          <label class="form-check-label" for="terraceYes">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="terrace" [value]="false" id="terraceNo">
+          <label class="form-check-label" for="terraceNo">
+            No
+          </label>
+        </div>
       </div>
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Floor Num" ngModel name="floorNum"  required>
+    </fieldset>
+    
+  </div>
+
+  <div class="row mb-3">
+    <label for="surfaceterrace" class="col-sm-2 col-form-label">Surface Terrace</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control" id="surfaceterrace" placeholder=""  formControlName="surfaceterrace">
+  </div>
+  </div>
+
+  <div class="row mb-3">
+
+    <fieldset class="row mb-3">
+      <legend class="col-sm-2 col-form-label pt-0">Category</legend>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="category" value="S+1" id="categoryS1">
+          <label class="form-check-label" for="categoryS1">
+            S+1
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="category" value="S+2" id="categoryS2">
+          <label class="form-check-label" for="categoryS2">
+            S+2
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" formControlName="category" value="S+3" id="categoryS3">
+          <label class="form-check-label" for="categoryS3">
+            S+3
+          </label>
+        </div>
+      </div>
+    </fieldset>
+    
+    </div>
+
+    <div class="row mb-3">
+      <label for="res" class="col-sm-2 col-form-label">Residence</label>
+      <div class="col-sm-10">
+      <input type="text" class="form-control" id="res" placeholder="">
+    </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-6">
+  <!--    <button type="submit" class="btn btn-danger w-100">Reset</button>-->  
+      </div>
+      <div class="col-6">
+        <button type="submit" class="btn btn-primary w-100">Add</button>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Surface" ngModel  name="surface"  required>
-      </div>
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Surface Terrace" ngModel  name="surfaceterrace" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Category" ngModel  name="category" required>
-      </div>
-      <div class="col">
-        <input type="number" class="form-control" placeholder="Residence ID" ngModel  name="ResidenceId" required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <label>
-          <input type="checkbox" ngModel name="terrace"> Terrace
-        </label>
-      </div>
-    </div>
-  
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-  
+    
+
+</form>
+</div>
+</div>
+</div>
