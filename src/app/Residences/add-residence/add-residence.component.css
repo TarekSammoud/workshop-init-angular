@@ -1,0 +1,39 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);  /* Bigger shadow */
+  border-radius: 8px;  /* Optional: smooth the edges */
+}
+
+.modal-dialog {
+  max-width: 800px;  /* Increased width */
+  width: 100%;
+  margin: 30px auto;
+}
+
+.modal-content {
+  max-height: 80vh;
+  overflow-y: auto;
+
+}
+
+.modal-body {
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    width: 90%;  /* Adjust width for smaller screens */
+    margin: 10px;
+  }
+
+  .modal-content {
+    max-height: 70vh;
+  }
+}

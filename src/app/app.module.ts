@@ -15,9 +15,7 @@ import { AddApartmentComponent } from './Apartments/add-apartment/add-apartment.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResidenceDetailsComponent } from './residence-details/residence-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import { MatSelectModule } from '@angular/material/select';
-import { MatOptionModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -40,14 +38,13 @@ import { MatOptionModule } from '@angular/material/core';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
     FormsModule,
     ResidencesComponent,
     ReactiveFormsModule,
-    NgxMatSelectSearchModule,
-    MatSelectModule,
-    MatOptionModule
+
 
   ],
   providers: [],

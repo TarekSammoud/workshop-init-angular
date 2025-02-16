@@ -24,16 +24,16 @@ export class AddApartmentComponent implements OnInit {
   listeResidence: any = this.residenceService.getResidences();
 
 
-      ngOnInit(): void {
-        this.appartement_data = new FormGroup({
-          'surface': new FormControl (null, [ Validators.required ]),
-          'terrace': new FormControl (false, [ Validators.required ]),
-          'surfaceterrace': new FormControl ({value: 0, disabled: true}, [ Validators.required ]),
-          'category': new FormControl ('S+1', [ Validators.required ]),
-          'ResidenceId': new FormControl({}),
-          'apartNum': new FormControl (null, [ Validators.required ]),
-          'floorNum': new FormControl (null, [ Validators.required ])
-        });
+  ngOnInit(): void {
+    this.appartement_data = new FormGroup({
+      'surface': new FormControl(null, [Validators.required]),
+      'terrace': new FormControl(false, [Validators.required]),
+      'surfaceterrace': new FormControl({ value: 0, disabled: true }, [Validators.required]),
+      'category': new FormControl('S+1', [Validators.required]),
+      'ResidenceId': new FormControl(null, [Validators.required]),
+      'apartNum': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')]),
+      'floorNum': new FormControl(null, [Validators.required, Validators.pattern('^[0-9]+$')])
+    });
 
         this.appartement_data.get('terrace')?.valueChanges.subscribe(value => {
           if (value) {
@@ -55,5 +55,9 @@ export class AddApartmentComponent implements OnInit {
           console.error("Form data:", this.appartement_data.value);
 
         }
+      }
+
+      onReset(){
+        this.appartement_data.reset();
       }
 }

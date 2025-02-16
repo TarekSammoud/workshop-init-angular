@@ -1,32 +1,73 @@
-<form (ngSubmit)="onFormSubmit()" #f="ngForm">
-    <div class="form-group">
-      <label for="exampleInputEmail1">Nom Residence</label>
-      <input  ngModel name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nom Residence">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Adresse</label>
-        <input ngModel name="address" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Adresse">
-      </div>
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card p-4 shadow-lg" style="width: 70vw;">
+    <div class="card-body">
+      <h4 class="card-title text-center mb-4">Ajouter une Residence</h4>
 
-      <div>
-      <div class="form-check form-check-inline">
-        <input [(ngModel)]="selectedOption" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Disponible">
-        <label class="form-check-label" for="inlineRadio1">Disponible</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input [(ngModel)]="selectedOption" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Vendu">
-        <label class="form-check-label" for="inlineRadio2">Vendu</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input [(ngModel)]="selectedOption" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="En Construction">
-        <label class="form-check-label" for="inlineRadio2">En Construction</label>
-      </div>
-    </div>
+      <form (ngSubmit)="onFormSubmit()" [formGroup]="residence_data">
+        
+        <!-- Name Field with Validation -->
+        <div class="form-group">
+          <label for="name">Nom Residence</label>
+          <input formControlName="name" name="name" type="text" class="form-control" id="name" placeholder="Nom Residence">
+          <div *ngIf="residence_data.get('name')?.invalid && residence_data.get('name')?.touched" class="text-danger">
+            <small *ngIf="residence_data.get('name')?.errors?.['required']">Name is required.</small>
+            <small *ngIf="residence_data.get('name')?.errors?.['minlength']">Name must be at least 3 characters long.</small>
+          </div>
+        </div>
+        
+        <!-- Address Field with Validation -->
+        <div class="form-group">
+          <label for="address">Adresse</label>
+          <input formControlName="address" name="address" type="text" class="form-control" id="address" placeholder="Adresse">
+          <div *ngIf="residence_data.get('address')?.invalid && residence_data.get('address')?.touched" class="text-danger">
+            <small *ngIf="residence_data.get('address')?.errors?.['required']">Address is required.</small>
+            <small *ngIf="residence_data.get('address')?.errors?.['minlength']">Address must be at least 5 characters long.</small>
+          </div>
+        </div>
+        
+        <!-- Status Field with Validation -->
+        <div class="mb-3">
+          <label for="status" class="form-label">Statut</label>
+          <select formControlName="status" class="form-control" id="status" name="status">
+            <option value="">Select Status</option>
+            <option value="Disponible">Disponible</option>
+            <option value="Vendu">Vendu</option>
+            <option value="En Construction">En Construction</option>
+          </select>
+          <div *ngIf="residence_data.get('status')?.invalid && residence_data.get('status')?.touched" class="text-danger">
+            <small *ngIf="residence_data.get('status')?.errors?.['required']">Status is required.</small>
+          </div>
+        </div>
 
-    <div class="mb-3">
-      <label for="formFile" class="form-label">Image</label>
-      <input class="form-control" type="file" id="formFile">
-    </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Image</label>
+          <input class="form-control" type="file" id="formFile" (change)="onImageChange($event)">
+        </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+        
+        <div *ngIf="isModalOpen" class="modal" id="addApartmentModal" tabindex="-1" aria-labelledby="addApartmentModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-body">
+                <app-add-apartment></app-add-apartment>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+        <button type="button" class="btn btn-secondary" (click)="openModal()">Ajouter un Appartement</button>
+
+        <button type="submit" class="btn btn-primary" [disabled]="residence_data.invalid">Submit</button>
+
+        
+      </form>
+
+
+
+    </div>
+  </div>
+</div>

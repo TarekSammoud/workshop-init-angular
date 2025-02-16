@@ -10,7 +10,7 @@ import { ResidenceService } from 'src/app/residence.service';
   imports: [
     CommonModule
   ],
-  providers:[ResidenceService],
+  providers:[],
   standalone: true,
 })
 
@@ -28,6 +28,10 @@ export class ResidencesComponent implements OnInit {
     this.residenceService.getResidences().subscribe(residences => this.listResidences = residences);
     this.listResidencesFiltered = this.listResidences;
     console.log(this.listResidences);
+  }
+
+  addRes(){
+    this.router.navigate(['/add-residence']);
   }
 
 

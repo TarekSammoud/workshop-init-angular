@@ -15,6 +15,7 @@ export class ApartmentsService {
   }
 
   addApartment(apart : Apartment): void {
+    apart.id = this.listApartments.length + 1;
     this.listApartments.push(apart);
   }
 

@@ -5,23 +5,37 @@
       <h4 class="card-title text-center mb-4">Ajouter un Apartment</h4>
 <form class="" [formGroup]="appartement_data" (ngSubmit)="onFormSubmit()">
   <div class="row mb-3">
-    <label for="apartNum" class="col-sm-2 col-col-sm-2 col-form-label">Apartment Number:</label>
+    <label for="apartNum" class="col-sm-2 col-form-label">Apartment Number:</label>
     <div class="col-sm-10">
-      <input type="text"  formControlName="apartNum" class="form-control" id="apartNum" placeholder="">
+      <input type="text" formControlName="apartNum" class="form-control" id="apartNum" placeholder="">
+      <div *ngIf="appartement_data.get('apartNum')?.invalid && appartement_data.get('apartNum')?.touched" class="text-danger">
+        <small *ngIf="appartement_data.get('apartNum')?.errors?.['required']">Apartment Number is required.</small>
+        <small *ngIf="appartement_data.get('apartNum')?.errors?.['pattern']">Apartment Number must be a number.</small>
+      </div>
     </div>
   </div>
+  
   <div class="row mb-3">
     <label for="floorNum" class="col-sm-2 col-form-label">Floor Number:</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="floorNum" formControlName="floorNum" >
+      <input type="text" class="form-control" id="floorNum" formControlName="floorNum">
+      <div *ngIf="appartement_data.get('floorNum')?.invalid && appartement_data.get('floorNum')?.touched" class="text-danger">
+        <small *ngIf="appartement_data.get('floorNum')?.errors?.['required']">Floor Number is required.</small>
+        <small *ngIf="appartement_data.get('floorNum')?.errors?.['pattern']">Floor Number must be a number.</small>
+      </div>
     </div>
   </div>
+  
   <div class="row mb-3">
     <label for="surface" class="col-sm-2 col-form-label">Surface</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="surface" placeholder=""  formControlName="surface">
+      <input type="text" class="form-control" id="surface" placeholder="" formControlName="surface">
+      <div *ngIf="appartement_data.get('surface')?.invalid && appartement_data.get('surface')?.touched" class="text-danger">
+        <small *ngIf="appartement_data.get('surface')?.errors?.['required']">Surface is required.</small>
+      </div>
+    </div>
   </div>
-  </div>
+  
   <div class="row mb-3">
 
     <fieldset class="row mb-3">
@@ -29,27 +43,29 @@
       <div class="col-sm-10">
         <div class="form-check">
           <input class="form-check-input" type="radio" formControlName="terrace" [value]="true" id="terraceYes">
-          <label class="form-check-label" for="terraceYes">
-            Yes
-          </label>
+          <label class="form-check-label" for="terraceYes">Yes</label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" formControlName="terrace" [value]="false" id="terraceNo">
-          <label class="form-check-label" for="terraceNo">
-            No
-          </label>
+          <label class="form-check-label" for="terraceNo">No</label>
         </div>
       </div>
     </fieldset>
+    
     
   </div>
 
   <div class="row mb-3">
     <label for="surfaceterrace" class="col-sm-2 col-form-label">Surface Terrace</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="surfaceterrace" placeholder=""  formControlName="surfaceterrace">
+      <input type="text" class="form-control" id="surfaceterrace" placeholder="" formControlName="surfaceterrace">
+      <div *ngIf="appartement_data.get('surfaceterrace')?.invalid && appartement_data.get('surfaceterrace')?.touched" class="text-danger">
+        <small *ngIf="appartement_data.get('surfaceterrace')?.errors?.['required']">Surface Terrace is required.</small>
+        <small *ngIf="appartement_data.get('surfaceterrace')?.errors?.['pattern']">Surface Terrace must be a valid number.</small>
+      </div>
+    </div>
   </div>
-  </div>
+  
 
   <div class="row mb-3">
 
@@ -58,53 +74,55 @@
       <div class="col-sm-10">
         <div class="form-check">
           <input class="form-check-input" type="radio" formControlName="category" value="S+1" id="categoryS1">
-          <label class="form-check-label" for="categoryS1">
-            S+1
-          </label>
+          <label class="form-check-label" for="categoryS1">S+1</label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" formControlName="category" value="S+2" id="categoryS2">
-          <label class="form-check-label" for="categoryS2">
-            S+2
-          </label>
+          <label class="form-check-label" for="categoryS2">S+2</label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" formControlName="category" value="S+3" id="categoryS3">
-          <label class="form-check-label" for="categoryS3">
-            S+3
-          </label>
+          <label class="form-check-label" for="categoryS3">S+3</label>
         </div>
       </div>
     </fieldset>
     
+    
     </div>
 
-    <div class="row mb-3">
+  <div class="row mb-3">
       <label for="res" class="col-sm-2 col-form-label">Residence</label>
       <div class="col-sm-10">
-      <input type="text" class="form-control" id="res" placeholder="">
+      <input type="text" class="form-control" formControlName="ResidenceId" id="res" placeholder="0">
     </div>
     </div>
-
+    
+ <!-- 
     <mat-form-field>
       <mat-select formControlName="ResidenceId" placeholder="Residence" #singleSelect>
         <mat-option>
           <ngx-mat-select-search></ngx-mat-select-search>
         </mat-option>
         <mat-option *ngFor="let residence of listeResidence | async" [value]="residence">
-          {{residence.id}}
+          {{residence.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
+  -->
 
-    <div class="row mb-3">
-      <div class="col-6">
-  <!--    <button type="submit" class="btn btn-danger w-100">Reset</button>-->  
-      </div>
-      <div class="col-6">
-        <button type="submit" class="btn btn-primary w-100">Add</button>
-      </div>
+  
+
+  <div class="row">
+
+    <div class="col-6">
+      <button type="button" class="btn btn-danger w-100" (click)="onReset()">Reset</button>
     </div>
+    <div class="col-6">
+      <button type="submit" class="btn btn-primary w-100" [disabled]="appartement_data.invalid">Add</button>
+    </div>
+  </div>
+  
+  
     
 
 </form>

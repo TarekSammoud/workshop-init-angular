@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Residence } from './core/models/residence';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResidenceService {
+  
 
     listResidences: Residence[]=[
       {id:1,"locationShown": false,"name": "El fel","address":"Borj Cedria", "image":"../../assets/R1.jpeg", status: "Disponible"},
@@ -13,6 +14,9 @@ export class ResidenceService {
        {id:3,"locationShown": false,"name": "El Arij", "address":"Rades","image":"../../assets/R3.jpeg", status: "Vendu"},
        {id:4,"locationShown": false,"name": "El Anber","address":"inconnu", "image":"../../assets/R4.jpeg", status: "En Construction"}
      ];
+     private residencesSubject: BehaviorSubject<Residence[]> = new BehaviorSubject<Residence[]>(this.listResidences);
+
+     
 
      getResidences(): Observable<Residence[]> {
       return of(this.listResidences);
@@ -20,6 +24,7 @@ export class ResidenceService {
 
     addResidence(residence: Residence): void {
       this.listResidences.push(residence);
+      this.residencesSubject.next(this.listResidences); // Update the BehaviorSubject to notify subscribers
     }
 
     updateResidence(residence: Residence): void {
@@ -29,5 +34,9 @@ export class ResidenceService {
       }
     }
 
-  constructor() { }
+  constructor() {
+      console.log("ResidenceService instantiated");
+    
+    
+   }
 }
