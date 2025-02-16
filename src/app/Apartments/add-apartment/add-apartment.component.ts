@@ -21,6 +21,7 @@ export class AddApartmentComponent implements OnInit {
 
 
   apart: Apartment = new Apartment(); 
+  listeResidence: any = this.residenceService.getResidences();
 
 
       ngOnInit(): void {
@@ -29,7 +30,7 @@ export class AddApartmentComponent implements OnInit {
           'terrace': new FormControl (false, [ Validators.required ]),
           'surfaceterrace': new FormControl ({value: 0, disabled: true}, [ Validators.required ]),
           'category': new FormControl ('S+1', [ Validators.required ]),
-         // 'ResidenceId': new FormGroup({}),
+          'ResidenceId': new FormControl({}),
           'apartNum': new FormControl (null, [ Validators.required ]),
           'floorNum': new FormControl (null, [ Validators.required ])
         });

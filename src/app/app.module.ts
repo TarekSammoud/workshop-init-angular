@@ -15,6 +15,11 @@ import { AddApartmentComponent } from './Apartments/add-apartment/add-apartment.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResidenceDetailsComponent } from './residence-details/residence-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatSelectModule } from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
+
+
 
 
 
@@ -31,7 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ApartmentsComponent,
     ApartmentsByResidenceComponent,
     AddApartmentComponent,
-    ResidenceDetailsComponent
+    ResidenceDetailsComponent,    
   ],
   imports: [
     BrowserModule,
@@ -39,7 +44,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     ResidencesComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMatSelectSearchModule,
+    MatSelectModule,
+    MatOptionModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
