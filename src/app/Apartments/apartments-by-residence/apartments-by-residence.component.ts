@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Apartment } from 'src/app/core/models/apartment';
-import { Residence } from 'src/app/core/models/residence';
 import { ApartmentsService } from 'src/app/services/apartments.service';
 
 @Component({
@@ -10,26 +8,28 @@ import { ApartmentsService } from 'src/app/services/apartments.service';
   templateUrl: './apartments-by-residence.component.html',
   styleUrls: ['./apartments-by-residence.component.css']
 })
-export class ApartmentsByResidenceComponent implements OnInit{
+export class ApartmentsByResidenceComponent implements OnInit {
   
-  constructor(private apartmentService: ApartmentsService, private route: ActivatedRoute) { }
+  apartments!: Apartment[];
 
+  constructor(private apartmentsService: ApartmentsService, private route: ActivatedRoute) { }
 
-
-
-  apartments! : Apartment[];
   ngOnInit(): void {
-
+    // Subscribe to route parameters
     this.route.paramMap.subscribe(params => {
-      let id = +params.get('id')!;
+      const id = +params.get('id')!; // Get the ID from the route parameter
       console.log(id);
-      this.apartments = this.apartmentService.getApartmentsByID(id -1 );
 
+      // Fetch apartments by ResidenceId, assuming the service method returns an observable
+      this.apartmentsService.getApartmentsByID(id).subscribe(
+        (apartments: Apartment[]) => {
+          this.apartments = apartments; // Assign the fetched apartments to the local array
+          console.log('Apartments for residence:', this.apartments);
+        },
+        (error) => {
+          console.error('Error fetching apartments:', error);
+        }
+      );
     });
-
-    console.log(this.apartments);
-    console.log(this.apartmentService.getApartments());
-
   }
-
 }

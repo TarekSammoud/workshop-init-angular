@@ -5,6 +5,7 @@ import { ApartmentsService } from 'src/app/services/apartments.service';
 import { ResidenceService } from 'src/app/residence.service';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-apartment',
   templateUrl: './add-apartment.component.html',
@@ -12,7 +13,7 @@ import { Validators } from '@angular/forms';
 })
 export class AddApartmentComponent implements OnInit {
 
-  constructor (private apartmentsService : ApartmentsService, private residenceService : ResidenceService) {}
+  constructor (private apartmentsService : ApartmentsService, private residenceService : ResidenceService,private router: Router) {}
   resListe = this.residenceService.getResidences();
 
   appartement_data! : FormGroup;
@@ -48,8 +49,20 @@ export class AddApartmentComponent implements OnInit {
       onFormSubmit() {
         if (this.appartement_data.valid) {
           console.log("Submitting form:", this.appartement_data.value);
+
+          this.apartmentsService.getLength().subscribe(length => {
+            this.appartement_data.addControl('id', new FormControl(length + 1));
+            this.apartmentsService.addApartment(this.appartement_data.value).subscribe(
+              response => {
+                console.log('Residence added successfully:', response);
+                this.router.navigate(['/apartments']);
+              },
+              error => {
+                console.error('Error adding residence:', error);
+              }
+            );
+          });
     
-          this.apartmentsService.addApartment(this.appartement_data.value)
         } else {
           console.error("Form is invalid:", this.appartement_data.errors);
           console.error("Form data:", this.appartement_data.value);

@@ -1,0 +1,49 @@
+{
+  "residences": [
+    {
+      "id": 1,
+      "name": "kasd",
+      "address": "adskjd",
+      "status": "Vendu",
+      "image": "../../assets/undefined"
+    },
+    {
+      "id": 2,
+      "name": "El Anber",
+      "address": "inconnu",
+      "status": "En Construction",
+      "image": "../../assets/R4.jpeg"
+    }
+  ],
+  "apartments": [
+    {
+      "id": 1,
+      "surface": 80,
+      "category": "2BHK",
+      "terrace": true,
+      "surfaceterrace": 20,
+      "floorNum": 3,
+      "apartNum": "101",
+      "ResidenceId": 1
+    },
+    {
+      "id": 2,
+      "surface": 100,
+      "category": "3BHK",
+      "terrace": true,
+      "surfaceterrace": 30,
+      "floorNum": 2,
+      "apartNum": "102",
+      "ResidenceId": 1
+    },
+    {
+      "id": 3,
+      "surface": "54",
+      "terrace": false,
+      "category": "S+1",
+      "ResidenceId": "2",
+      "apartNum": "54",
+      "floorNum": "54"
+    }
+  ]
+}

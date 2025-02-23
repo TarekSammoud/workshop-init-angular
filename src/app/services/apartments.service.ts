@@ -1,32 +1,43 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Apartment } from '../core/models/apartment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApartmentsService {
+  private apiUrl = 'http://localhost:3000/apartments'; // URL for your JSON Server endpoint
 
-  listApartments: Apartment[]=[];
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
-
-  getApartments(): Apartment[] {
-    return this.listApartments;
+  // Get all apartments
+  getApartments(): Observable<Apartment[]> {
+    return this.http.get<Apartment[]>(this.apiUrl);
   }
 
-  addApartment(apart : Apartment): void {
-    apart.id = this.listApartments.length + 1;
-    this.listApartments.push(apart);
+  getLength(): Observable<number> {
+    return new Observable(observer => {
+      this.http.get<any[]>(this.apiUrl).subscribe(
+        (data) => {
+          // Emit the length of the array
+          observer.next(data.length);
+          observer.complete();
+        },
+        (error) => {
+          observer.error(error);
+        }
+      );
+    });
   }
 
-  getApartmentsByID(id: number): Apartment[] {
-    let associatedApart = [];
-    for (let apart of this.listApartments){
-      if (apart.ResidenceId == id){
-        
-        associatedApart.push(apart);
-      }
-    }
-    return associatedApart;
+  // Add a new apartment
+  addApartment(apart: Apartment): Observable<Apartment> {
+    return this.http.post<Apartment>(this.apiUrl, apart);
+  }
+
+  // Get apartments by Residence ID
+  getApartmentsByID(id: number): Observable<Apartment[]> {
+    return this.http.get<Apartment[]>(`${this.apiUrl}?ResidenceId=${id}`);
   }
 }
