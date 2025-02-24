@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Residence } from '../core/models/residence';
+import { Residence } from 'src/app/core/models/residence';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ResidenceService } from '../residence.service';
+import { ResidenceService } from 'src/app/core/Services/residence.service';
 @Component({
   selector: 'app-residence-details',
   templateUrl: './residence-details.component.html',

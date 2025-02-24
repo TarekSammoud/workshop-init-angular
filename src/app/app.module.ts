@@ -13,7 +13,7 @@ import { ApartmentsComponent } from './Apartments/apartments/apartments.componen
 import { ApartmentsByResidenceComponent } from './Apartments/apartments-by-residence/apartments-by-residence.component';
 import { AddApartmentComponent } from './Apartments/add-apartment/add-apartment.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ResidenceDetailsComponent } from './residence-details/residence-details.component';
+import { ResidenceDetailsComponent } from './Residences/residence-details/residence-details.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

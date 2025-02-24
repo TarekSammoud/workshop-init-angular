@@ -8,7 +8,7 @@ import { ResidencesComponent } from './Residences/residences/residences.componen
 import { ApartmentsComponent } from './Apartments/apartments/apartments.component';
 import { ApartmentsByResidenceComponent } from './Apartments/apartments-by-residence/apartments-by-residence.component';
 import { AddApartmentComponent } from './Apartments/add-apartment/add-apartment.component';
-import { ResidenceDetailsComponent } from './residence-details/residence-details.component';
+import { ResidenceDetailsComponent } from './Residences/residence-details/residence-details.component';
 import { AddResidenceComponent } from './Residences/add-residence/add-residence.component';
 
 const routes: Routes = [

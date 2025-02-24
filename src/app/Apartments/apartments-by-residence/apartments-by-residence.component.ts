@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Apartment } from 'src/app/core/models/apartment';
-import { ApartmentsService } from 'src/app/services/apartments.service';
+import { ApartmentsService } from 'src/app/core/Services/apartments.service';
 
 @Component({
   selector: 'app-apartments-by-residence',

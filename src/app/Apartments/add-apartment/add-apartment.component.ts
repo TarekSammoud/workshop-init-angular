@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
 import { Apartment } from 'src/app/core/models/apartment';
-import { ApartmentsService } from 'src/app/services/apartments.service';
-import { ResidenceService } from 'src/app/residence.service';
+import { ApartmentsService } from 'src/app/core/Services/apartments.service';
+import { ResidenceService } from 'src/app/core/Services/residence.service';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
